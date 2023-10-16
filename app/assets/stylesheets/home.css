@@ -1,0 +1,69 @@
+.home-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading h1 {
+  margin: 1rem;
+  margin-bottom: 3rem;
+  font-weight: bold;
+}
+
+.button-green {
+  background-color: #8bc349 !important;
+  border-radius: 8px;
+}
+
+.button-group {
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+
+.button-group button {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.jumbo {
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://images.pexels.com/photos/414805/pexels-photo-414805.jpeg?auto=compress&cs=tinysrgb&")
+      no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-container {
+}
+
+.card-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.para-justify {
+  padding: 0.2rem;
+  margin: 0.3rem;
+  text-align: justify;
+}
+
+.nav-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.nav-div ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
