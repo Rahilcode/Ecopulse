@@ -24,10 +24,10 @@
         <%= link_to "Notification", about_path, class: "nav-link fw-bold" %>
       </li>
       <li class="nav-item me-2">
-        <%= link_to "Profile", about_path, class: "nav-link fw-bold" %>
+        <%= link_to "Profile", user_profile_path, class: "nav-link fw-bold" %>
       </li>
       <li class="nav-item me-2">
-        <%= link_to "Logout", about_path, class: "nav-link fw-bold" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link fw-bold" %>
       </li>
     </ul>
     </div>

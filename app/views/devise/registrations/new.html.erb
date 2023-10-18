@@ -1,0 +1,54 @@
+<div class="container my-3">
+    <div class="row heading">
+        <div class="col">
+        <h2 class="fw-bold mb-4">User Register</h2>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="mb-3 field col-8">
+          <% f.label :name %>
+          <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "form-control bg-light border fw-bold" %> 
+        </div>
+      
+          <div class="mb-3 field col-8">
+            <% f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control bg-light fw-bold" %>
+          </div>
+      
+          <div class="mb-3 field col-8">
+            <% f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control bg-light fw-bold" %>
+          </div>
+      
+          <div class="mb-3 field col-8">
+            <% f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password", class: "form-control bg-light fw-bold" %>
+          </div>
+      
+          <div class="mb-3 field col-8">
+            <% f.label :phone_number %>
+            <%= f.text_field :phone_number, autofocus: true, placeholder: "Phone Number", class: "form-control bg-light fw-bold" %>
+          </div>
+            
+            <div class="mb-3 field col-8">
+              <% f.label :address %>
+              <%= f.text_field :address, autofocus: true, placeholder: "Address", class: "form-control bg-light fw-bold" %>
+            </div>
+            
+            <div class="mt-4 mb-4 actions">
+              <%= f.submit "Register", class: "btn button-green fw-bold col-8" %>
+            </div>
+            <% end %>
+            
+            <%= render "devise/shared/links" %>
+        </div>
+        <div class="col">
+            <%= image_tag "Pulse.png" %>
+        </div>
+    </div>
+</div>
+    

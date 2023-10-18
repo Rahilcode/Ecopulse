@@ -1,5 +1,5 @@
 .home-container {
-  height: 100vh;
+  height: 89vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,4 +66,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.profile-secondary-text {
+  color: #464646;
 }

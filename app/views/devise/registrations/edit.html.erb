@@ -1,0 +1,73 @@
+<div class="container">
+
+  <div class="row heading">
+    <div class="col m-2">
+      <h2 class="fw-bold mb-4">Edit <%= resource_name.to_s.humanize %></h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="mb-3 field col-8">
+          <% f.label :name %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "email", placeholder: "Name", class: "form-control bg-light border fw-bold" %>
+        </div>
+
+        <div class="mb-3 field col-8">
+          <% f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control bg-light border fw-bold" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="mb-3 field col-8">
+          <% f.label :password %> <i>(leave blank if you don't want to change it)</i>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password", class: "form-control bg-light border fw-bold" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="mb-3 field col-8">
+          <% f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm New Password", class: "form-control bg-light border fw-bold" %>
+        </div>
+
+        <div class="mb-3 field col-8">
+          <% f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Current Password", class: "form-control bg-light border fw-bold" %>
+        </div>
+
+        <div class="mb-3 field col-8">
+          <% f.label :phone_number %>
+          <%= f.text_field :phone_number, autofocus: true, autocomplete: "email", placeholder: "Phone Number", class: "form-control bg-light border fw-bold" %>
+        </div>
+
+        <div class="mb-3 field col-8">
+          <% f.label :address %>
+          <%= f.text_field :address, autofocus: true, autocomplete: "email", placeholder: "Address", class: "form-control bg-light border fw-bold" %>
+        </div>
+
+        <div class="mb-3 field col-8">
+          <%= f.submit "Update Details", class: "btn button-green fw-bold col-8" %>
+        </div>
+
+        <%= link_to "Back", :back, class: "btn btn-primary" %>
+      <% end %>
+
+      <div class="m-4">
+        <h3 class="fw-bold">Cancel my account</h3>
+
+        <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger m-2" %></div>
+
+        <%#= link_to "Back", :back %>
+      </div>
+
+    </div>
+    <div class="col m-2">
+        <%= image_tag "editpage.avif" %>
+    </div>
+  </div>
+</div>
