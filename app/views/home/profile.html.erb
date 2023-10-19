@@ -1,0 +1,35 @@
+<%= render '/shared/navbar' %>
+
+<div class="container my-2">
+
+
+<% if user_signed_in? %>
+    <h1 class="text">User Profile</h1>
+    <div class="row">
+        <div class="col col-lg-3">
+            <% if current_user.user_image.attached? %>
+                <%= image_tag current_user.user_image, height: 250, width: 250, class: "w-lg-100" %>
+            <% else %>
+                <%= image_tag "aiperson.avif", height: 250, width: 250 %>
+            <% end %>
+        </div>
+        <div class="col col-lg-8">
+            <h1 class="text-capitalize mb-4"><%= current_user.name %></h1>
+            <h5 class="text-secondary mb-4">Address: <%= current_user.address %></h5>
+            <h5 class="text-secondary mb-4">Email: <%= current_user.email %></h5>
+            <h5 class="text-secondary mb-4">Phone: <%= current_user.phone_number %></h5>
+        </div>
+        
+    </div>
+
+    <div class="m-4">
+        <%= link_to "Update Profile", edit_user_registration_path, class: "fs-4 btn button-green fw-bold mb-4 col-4 p-2" %>
+    </div>
+
+<% else %>
+
+<h1>Please Sign In</h1>
+
+<% end %>
+
+</div>

@@ -8,6 +8,11 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="mb-3 field col-8">
+          <% f.label :user_image %>
+          <%= f.file_field :user_image, class: "form-control bg-light border fw-bold" %>    
+        </div>
+
+        <div class="mb-3 field col-8">
           <% f.label :name %>
           <%= f.text_field :name, autofocus: true, autocomplete: "email", placeholder: "Name", class: "form-control bg-light border fw-bold" %>
         </div>

@@ -21,7 +21,9 @@
       </ul>
       <ul class="navbar-nav">
       <li class="nav-item me-2">
-        <%= link_to "Notification", about_path, class: "nav-link fw-bold" %>
+        <%= link_to about_path, class: "nav-link fw-bold" do %>
+          <i class="fa-solid fa-bell"></i>
+        <% end %>
       </li>
       <li class="nav-item me-2">
         <%= link_to "Profile", user_profile_path, class: "nav-link fw-bold" %>
