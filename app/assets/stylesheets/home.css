@@ -22,6 +22,11 @@
   border-radius: 8px;
 }
 
+.button-purple {
+  background-color: #0112a9 !important;
+  padding: 1px 5px;
+}
+
 .button-group {
   margin-top: 2rem;
   margin-left: 1rem;

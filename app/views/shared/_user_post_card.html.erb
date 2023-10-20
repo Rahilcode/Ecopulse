@@ -1,26 +1,45 @@
-<div class="card w-75 mb-3 bg-light position-absolute"> 
-  <div class="card-body">
+<div class="card w-75 mb-3 bg-light"> 
+  <div class="card-body p-1">
+  <h4 class="text-end m-2 position-absolute top-0 end-0">Contact No: <%= post.phone_number %></h4>
   <div class="row">
-  <h4 class="text-end position-relative">Contact No: 92832382</h4>
     <div class="col col-3 d-flex justify-content-center align-items-center">
+      <% if post.user_post_image.attached? %>
+        <%= image_tag post.user_post_image, height: 140, width: 180 %>
+      <% else %>
         <%= image_tag "eco.avif", height: 140 %>
+      <% end %>
     </div>
     <div class="col">
-        <h2 class="card-title">Rohan  (Newspaper)</h2>
-        <h6 class="card-text text-secondary">Address: JP Nagar, Bangalore</h6>
-        <h4><span class="badge bg-black">Bangalore</span></h4>
+        <h2 class="card-title"><%= post.name.capitalize %>  (<%= post.material_type.capitalize %>)</h2>
+        <h6 class="card-text text-secondary">Address: <%= post.address %> </h6>
+        <h4><span class="badge bg-black"><%= post.city.capitalize %> </span></h4>
         <div class="d-flex justify-content-between">
-            <h6 class="card-text text-secondary">Type: Newspaper</h6>
-            <h6 class="card-text text-secondary">Date: 03/10/2023</h6>
-            <h6 class="card-text text-secondary">Time Available: 3 - 4 PM</h6>
+            <h6 class="card-text text-secondary">Type: <%= post.material_type.capitalize %> </h6>
+            <h6 class="card-text text-secondary">Date: <%= post.date %> </h6>
+            <h6 class="card-text text-secondary">Time Available: <%= post.time_slot.strftime('%H:%M:%S') %> </h6>
         </div>
     </div>
   </div>
   <div class="row">
-    <p class="card-text col"> Description: I have newspapers to sell, kindly contact. </p>
-    <div class="col col-2 my-2">
-    <%= link_to "Request", about_path, class: "btn button-green fw-fold" %>
-    </div>
+    <p class="card-text col"> Description: <%= post.description.size==0 ? "NA" : post.description %>  </p>
+    
+    
+      <% if !user_signed_in? %>
+      <div class="col col-2 my-2">
+        <%= link_to "Request", about_path, class: "btn button-green fw-bold ms-4" %>
+      </div>
+      <% else %>
+      <div class="col text-end me-1">
+        <%= link_to "Edit", edit_post_path(post), class: "btn btn-warning fw-bold" %>
+
+        <%= link_to "Destroy", post_path(post), class: "btn btn-danger fw-bold", data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+        } %>
+      </div>
+      <% end %>
+    
+    
   </div>
   </div>
 </div>

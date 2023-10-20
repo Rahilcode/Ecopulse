@@ -1,0 +1,13 @@
+<% if notice %>
+    <div class="flash-card notice alert alert-success alert-dismissible fade show fw-bold position-absolute top-2" role="alert">
+        <%= notice %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% end %>
+<% if alert %>
+    <div class="flash-card notice alert alert-warning alert-dismissible fade show position-absolute top-2" role="alert">
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% end %>
+

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  city: MyString
+  address: MyString
+  material_type: MyString
+  description: MyText
+  date: 2023-10-19
+  time_slot: 2023-10-19 18:49:56
+  user: one
+
+two:
+  name: MyString
+  title: MyString
+  city: MyString
+  address: MyString
+  material_type: MyString
+  description: MyText
+  date: 2023-10-19
+  time_slot: 2023-10-19 18:49:56
+  user: two

@@ -7,9 +7,12 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="mb-3 field col-8">
+        <div class="mb-3 field d-flex justify-content-center align-items-center">
+        <%= f.file_field :user_image, class: "form-control bg-light border fw-bold m-2" %>    
+        <% if current_user.user_image.attached? %>
+          <%= image_tag current_user.user_image, height: 100, width: 100, class: "rounded-circle" %>
           <% f.label :user_image %>
-          <%= f.file_field :user_image, class: "form-control bg-light border fw-bold" %>    
+        <% end %>
         </div>
 
         <div class="mb-3 field col-8">

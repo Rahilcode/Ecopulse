@@ -1,0 +1,13 @@
+<%= render "/shared/navbar" %>
+<div class="container my-3">
+<h1>Edit post</h1>
+
+<%= render "form", post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "Back to posts", posts_path, class: "btn btn-dark" %>
+</div>
+
+</div>
