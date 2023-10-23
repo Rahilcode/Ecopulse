@@ -1,0 +1,67 @@
+
+
+
+<div class="container my-3">
+    <div class="row heading">
+        <div class="col">
+        <h2 class="fw-bold mb-4">Company Register</h2>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "companies/shared/error_messages", resource: resource %>
+            <div class="mb-3 field col-8">
+              <% f.label :company_name %>
+              <%= f.text_field :company_name, autofocus: true, placeholder: "Company Name", class: "form-control bg-light border fw-bold" %> 
+            </div>
+        
+          <div class="mb-3 field col-8">
+            <% f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control bg-light border fw-bold" %>
+          </div>
+        
+          <div class="mb-3 field col-8">
+            <% f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control bg-light border fw-bold" %>
+          </div>
+        
+          <div class="mb-3 field col-8">
+            <% f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "form-control bg-light border fw-bold" %>
+          </div>
+
+          <div class="mb-3 field col-8">
+              <% f.label :company_phone_number %>
+              <%= f.text_field :company_phone_number, autofocus: true, placeholder: "Phone Number", class: "form-control bg-light border fw-bold" %> 
+            </div>
+
+          <div class="mb-3 field col-8">
+            <% f.label :company_address %>
+            <%= f.text_field :company_address, autofocus: true, placeholder: "Address", class: "form-control bg-light border fw-bold" %> 
+          </div>
+
+          <div class="mb-3 field col-8">
+            <% f.label :company_city %>
+            <%= f.text_field :company_city, autofocus: true, placeholder: "Operational City", class: "form-control bg-light border fw-bold" %> 
+          </div>
+          <div class="mb-3 field col-12">
+            <% f.label :company_description %>
+            <%= f.text_area :company_description, autofocus: true, placeholder: "Company Description", class: "form-control bg-light border fw-bold" %> 
+          </div>
+        
+          <div class="mt-4 mb-4 actions">
+            <%= f.submit "Register", class: "btn button-green fw-bold col-8" %>
+          </div>
+        <% end %>
+        
+        <%= render "companies/shared/links" %>
+
+
+      </div>
+      <div class="col">
+            <%= image_tag "Pulse.png" %>
+      </div>
+    </div>
+</div>
+    

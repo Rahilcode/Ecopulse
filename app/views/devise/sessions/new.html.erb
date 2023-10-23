@@ -1,4 +1,8 @@
 <div class="container">
+  <% if company_signed_in? %>
+    <h1>Please visit the below link to Log In</h1>
+    <%= link_to "Login", company_session_path, class: "btn btn-dark" %>
+  <% else %>
     <div class="row heading">
       <div class="col">
         <%= image_tag "Pulse.png" %>
@@ -22,8 +26,9 @@
             </div>
           <% end %>
           
-          <%#= render "devise/shared/links" %>
+          <%= render "devise/shared/links" %>
         </div>
         
     </div>
+  <% end %>
 </div>

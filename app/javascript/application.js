@@ -2,24 +2,25 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 
-let image = document.querySelector(".post_img");
-image.addEventListener("change", (e) => {
-  console.log(e.target.value);
-  console.log("image");
+// console.log("before");
+// let image = document.querySelector(".post_img");
+// image.addEventListener("change", (e) => {
+//   console.log(e.target.value);
+//   console.log("image");
 
-  var reader = new FileReader();
+//   var reader = new FileReader();
 
-  reader.onload = function () {
-    var dataURL = reader.result;
-    var label = document.querySelector(".form-with-img label");
-    label.classList.add("d-none");
+//   reader.onload = function () {
+//     var dataURL = reader.result;
+//     var label = document.querySelector(".form-with-img label");
+//     // label.classList.add("d-none");
 
-    console.log("none", label);
-    var previewImage = document.querySelector(".form-with-img img");
-    previewImage.classList.add("w-100");
-    previewImage.classList.add("h-25");
-    previewImage.src = dataURL;
-  };
+//     console.log("none", label);
+//     var previewImage = document.querySelector(".form-with-img img");
+//     previewImage.classList.add("w-100");
+//     previewImage.classList.add("h-25");
+//     previewImage.src = dataURL;
+//   };
 
-  reader.readAsDataURL(e.target.files[0]);
-});
+//   reader.readAsDataURL(e.target.files[0]);
+// });

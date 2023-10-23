@@ -60,9 +60,8 @@
 </div>
 <div class="form-with-img col col-lg-2">
   
-  <%= form.file_field :user_post_image, class: "form-control post_img bg-light border m-2 d-none" %>    
   <%= form.label :user_post_image, "Input Image", class: "w-100 h-25 d-flex align-items-center justify-content-center bg-light border-dark fw-bold" %>
-  
+  <%= form.file_field :user_post_image, class: "fw-bold post_img bg-light border m-2 rounded" %>    
   <img src="" />
   
 </div>
@@ -74,4 +73,5 @@
   <div>
     <%= form.submit @post.id ? "Update Post" : "Create Post", class: "btn button-green fw-bold" %>
   </div>
+
 <% end %>

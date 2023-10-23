@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row heading">
+    <div class="col">
+      <%= image_tag "Pulse.png" %>
+    </div>
+
+    <div class="col">
+      <h2 class="fw-bold mb-4">Company Login</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="mb-5 field col-8">
+          <% f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control bg-light fw-bold" %>
+        </div>
+
+        <div class="mb-5 field col-8">
+          <% f.label :password %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control bg-light fw-bold" %>
+        </div>
+
+        <div class="mt-4 mb-4 actions">
+          <%= f.submit "Log in", class: "btn button-green fw-bold col-8" %>
+        </div>
+      <% end %>
+
+      <%= render "companies/shared/links" %>
+    </div>    
+  </div>
+</div>

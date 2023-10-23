@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name phone_number address user_image])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name phone_number address user_image])
+    if resource_class == User
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[name phone_number address user_image])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[name phone_number address user_image])
+    elsif resource_class == Company
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[company_name company_address company_phone_number company_description company_city])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[company_name company_address company_phone_number company_description company_city])
+    end 
   end
 end

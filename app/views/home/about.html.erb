@@ -1,4 +1,8 @@
-<%= render "/shared/navbar" %>
+<% if company_signed_in? %>
+    <%= render "/shared/company_navbar" %>
+<% else %>
+    <%= render "/shared/navbar" %>
+<% end %>
 
 <div class="p-5 mb-4 bg-body-tertiary jumbo">
     <div class="container-fluid py-5 text-center">
