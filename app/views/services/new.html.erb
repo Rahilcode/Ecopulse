@@ -1,0 +1,13 @@
+<%= render "/shared/company_navbar" %>
+<div class="container my-3">
+    <div class="">
+      <h1>Create New service</h1>
+
+      <%= render "form", service: @service %>
+    </div>
+
+<div>
+  <%= link_to "Back to services", services_path, class: "btn btn-primary my-2" %>
+</div>
+
+</div>

@@ -1,43 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="row heading">
+    <div class="col m-2">
+      <h2 class="fw-bold mb-4">Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "companies/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="mb-3 field d-flex justify-content-center align-items-center">
+    <%= f.file_field :company_image, class: "form-control bg-light border fw-bold m-2" %>    
+    <% if current_company.company_image.attached? %>
+      <%= image_tag current_company.company_image, height: 100, width: 100, class: "rounded-circle" %>
+      <% f.label :company_image %>
+    <% end %>
+    </div>
+
+  <div class="mb-3 field col-8">
+    <% f.label :company_name %>
+    <%= f.text_field :company_name, autofocus: true, autocomplete: "company_name", placeholder: "Name", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-8">
+    <% f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control bg-light border fw-bold" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="mb-3 field col-8">
+    <% f.label :password %> <i>(leave blank if you don't want to change it)</i>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password", class: "form-control bg-light border fw-bold" %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="mb-3 field col-8">
+    <% f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm New Password", class: "form-control bg-light border fw-bold" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  <div class="mb-3 field col-8">
+    <% f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Password", class: "form-control bg-light border fw-bold" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="mb-3 field col-8">
+    <% f.label :company_phone_number %>
+    <%= f.text_field :company_phone_number, autofocus: true, autocomplete: "company_phone_number", placeholder: "Phone Number", class: "form-control bg-light border fw-bold" %>
   </div>
+  <div class="mb-3 field col-8">
+    <% f.label :company_address %>
+    <%= f.text_field :company_address, autofocus: true, autocomplete: "company_address", placeholder: "Address", class: "form-control bg-light border fw-bold" %>
+  </div>
+  <div class="mb-3 field col-8">
+    <% f.label :company_city %>
+    <%= f.text_field :company_city, autofocus: true, autocomplete: "company_city", placeholder: "Operational City", class: "form-control bg-light border fw-bold" %>
+
+
+  </div>
+  <div class="mb-3 field col-10">
+    <% f.label :company_description %>
+    <%= f.text_area :company_description, autofocus: true, autocomplete: "company_description", placeholder: "Company Description", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-8">
+    <%= f.submit "Update Details", class: "btn button-green fw-bold col-8" %>
+  </div>
+  <%= link_to "Back", :back, class: "btn btn-primary"  %>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+        <div class="m-4">
+          <h3 class="fw-bold">Cancel my account</h3>
+          <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger m-2" %></div>
 
-<%= link_to "Back", :back %>
+          <%#= link_to "Back", :back %>
+        </div>
+      </div>
+
+      <div class="col m-2 w-50">
+          <%= image_tag "companyInfo.avif" %>
+      </div>
+
+  </div>
+</div>

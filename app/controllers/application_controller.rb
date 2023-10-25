@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: %i[name phone_number address user_image])
       devise_parameter_sanitizer.permit(:account_update, keys: %i[name phone_number address user_image])
     elsif resource_class == Company
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[company_name company_address company_phone_number company_description company_city])
-      devise_parameter_sanitizer.permit(:account_update, keys: %i[company_name company_address company_phone_number company_description company_city])
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[company_name company_address company_phone_number company_description company_city company_image])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[company_name company_address company_phone_number company_description company_city company_image])
     end 
   end
 end

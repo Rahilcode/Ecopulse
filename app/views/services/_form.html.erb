@@ -1,0 +1,62 @@
+<%= form_with(model: service) do |form| %>
+  <% if service.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+
+      <ul>
+        <% service.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+<div class="form-wt-img col col-lg-9 col-md-9">
+
+  <div class="mb-3 field col-lg-11">
+    <% form.label :title %>
+    <%= form.text_field :title, placeholder: "Title", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-lg-11">
+    <% form.label :name %>
+    <%= form.text_field :name,  placeholder: "Name", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-lg-11">
+    <% form.label :phone_number %>
+    <%= form.text_field :phone_number,  placeholder: "Phone Number", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-lg-11">
+    <% form.label :city %>
+    <%= form.text_field :city,  placeholder: "City", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-lg-11">
+    <% form.label :material %>
+    <%= form.text_field :material,  placeholder: "Material", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+  <div class="mb-3 field col-lg-12">
+    <% form.label :description %>
+    <%= form.text_area :description,  placeholder: "Description", class: "form-control bg-light border fw-bold" %>
+  </div>
+
+
+</div>
+<div class="form-with-img col col-lg-2">
+    
+    <%= form.label :service_post_image, "Input Image", class: "w-100 h-50 d-flex align-items-center justify-content-center bg-light border-dark fw-bold" %>
+    <%= form.file_field :service_post_image, class: "fw-bold post_img bg-light border m-2 rounded" %>    
+    <img src="" />
+    
+</div>
+  
+</div>
+
+  <div>
+    <%= form.submit class: "btn button-green fw-bold" %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<%= render '/shared/company_navbar' %>
+
+<div class="container my-2">
+
+
+<% if company_signed_in? %>
+    <h1 class="text">Company Profile</h1>
+    <div class="row">
+        <div class="col col-lg-3">
+            <% if current_company.company_image.attached? %>
+                <%= image_tag current_company.company_image, height: 250, width: 250, class: "w-lg-100" %>
+            <% else %>
+                <%= image_tag "aiperson.avif", height: 250, width: 250 %>
+            <% end %>
+        </div>
+        <div class="col col-lg-8">
+            <h1 class="text-capitalize mb-3"><%= current_company.company_name %></h1>
+            <h5 class="text-secondary mb-2">Address: <%= current_company.company_address %></h5>
+            <h5 class="text-secondary mb-2">Email: <%= current_company.email %></h5>
+            <h5 class="text-secondary mb-2">Phone: <%= current_company.company_phone_number %></h5>
+            <h5 class="text-secondary mb-2">Operational City: <%= current_company.company_city %></h5>
+            <h5 class="text-secondary mb-2">Description: <%= current_company.company_description %></h5>
+        </div>
+        
+    </div>
+
+    <div class="m-4 d-flex align-items-center justify-content-center gap-5 px-3">
+        <%= link_to "Update Profile", edit_company_registration_path, class: "fs-4 btn button-green fw-bold mb-4 col-6 p-2" %>
+        <%= link_to "Create Service", new_service_path, class: "fs-4 btn button-purple text-light fw-bold mb-4 col-6 p-2" %>
+    </div>
+
+<% else %>
+
+<h1>Please Sign In</h1>
+
+<% end %>
+
+</div>
+

@@ -1,0 +1,43 @@
+<div id="<%= dom_id service %>">
+  <p>
+    <% if service.service_post_image.attached? %>
+      <%= image_tag service.service_post_image %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= service.name %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= service.title %>
+  </p>
+
+  <p>
+    <strong>Phone number:</strong>
+    <%= service.phone_number %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= service.city %>
+  </p>
+
+  <p>
+    <strong>Material:</strong>
+    <%= service.material %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= service.description %>
+  </p>
+
+  <p>
+    <strong>Company:</strong>
+    <%= service.company_id %>
+  </p>
+
+</div>

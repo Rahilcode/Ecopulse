@@ -26,8 +26,6 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    puts "============================================"
-    puts @post.user_post_image
 
     respond_to do |format|
       if @post.save
