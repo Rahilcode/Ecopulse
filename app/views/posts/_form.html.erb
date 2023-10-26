@@ -35,7 +35,7 @@
 
   <div class="mb-3 field col-lg-11">
     <% form.label :material_type %>
-    <%= form.text_field :material_type, placeholder: "Type of Material", class: "form-control bg-light border fw-bold" %>
+    <%= form.select :material_type, ["Newspaper", "Plastic", "Metal"], { include_blank: "Select Type of Material" }, class: "form-select bg-light border fw-bold" %>
   </div>
 
   <div class="mb-3 field col-lg-11">
@@ -45,7 +45,7 @@
 
   <div class="mb-3 field col-lg-11">
     <% form.label :date %>
-    <%= form.date_field :date, placeholder: "Date", class: "form-control bg-light border fw-bold" %>
+    <%= form.date_field :date,min: Date.current, placeholder: "Date", class: "form-control bg-light border fw-bold" %>
   </div>
 
   <div class="mb-3 field col-lg-11">

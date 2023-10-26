@@ -3,15 +3,10 @@
 
 <h1>Services</h1>
 
-<div id="services">
+<div id="services" class="d-flex justify-content-center align-items-center flex-column">
   <% @services.each do |service| %>
-    <%= render service %>
-    <p>
-      <%= link_to "Show this service", service %>
-    </p>
+    <%= render '/shared/service_post_card', service:service, flag: false %>
   <% end %>
 </div>
-
-<%= link_to "New service", new_service_path %>
 
 </div>

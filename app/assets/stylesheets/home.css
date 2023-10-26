@@ -20,11 +20,23 @@
 .button-green {
   background-color: #8bc349 !important;
   border-radius: 8px;
+  transition: all;
+}
+
+.button-green:hover {
+  color: #8bc349 !important;
+  background-color: rgb(21, 20, 20) !important;
+  transform: scale(1.1);
 }
 
 .button-purple {
   background-color: #0112a9 !important;
   padding: 1px 5px;
+  transition: all;
+}
+
+.button-purple:hover {
+  transform: scale(1.1);
 }
 
 .button-group {
@@ -71,6 +83,10 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.nav-ul li a:hover {
+  color: #61b403 !important;
 }
 
 .profile-secondary-text {

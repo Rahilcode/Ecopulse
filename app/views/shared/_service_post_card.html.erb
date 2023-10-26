@@ -2,36 +2,39 @@
   <div class="card-body p-1">
   <div class="row">
     <div class="col col-3 d-flex justify-content-center align-items-center">
-      <% if false %>
-        <%= image_tag post.user_post_image, height: 140, width: 180 %>
-      <% else %>
-        <%= image_tag "eco.avif", height: 140 %>
-      <% end %>
+    <% if service.service_post_image.attached? %>
+      <%= image_tag service.service_post_image, height: 140, width: 180 %>
+    <% else %>
+      <%= image_tag "eco.avif", height: 140 %>
+    <% end %>
     </div>
     <div class="col">
-        <h2 class="card-title">Electronic Waste Collection Service </h2>
-        <h6 class="card-text text-secondary">EWaste PVT Ltd</h6>
+        <h2 class="card-title m-0"><%= service.title %> </h2>
+        <h5 class="card-text text-secondary"><%= service.name %></h5>
         <div class="d-flex gap-2">
-            <h4><span class="badge bg-black"> Bangalore</span> </h4>
+            <h4><span class="badge bg-black"> <%= service.city %></span> </h4>
             <h4><span class="badge bg-black"> Mumbai</span> </h4>
             <h4><span class="badge bg-black"> Chennai</span> </h4>
         </div>
     </div>
   </div>
   <div class="row">
-    <h3 class="card-text col"> Contact No: 4894829842  </h3>
-    
-    
+    <h3 class="card-text col"> Contact No: <%= service.phone_number %>  </h3>
       <% if !company_signed_in? %>
         <div class="col col-2 my-2">
             <%= link_to "Order", about_path, class: "btn button-green fw-bold ms-4" %>
         </div>
       <% else %>
-      <div class="col text-end me-1">
-        <%= link_to "Edit", about_path, class: "btn btn-warning fw-bold" %>
+      <% if flag %>
+        <div class="col text-end me-1">
+          <%= link_to "Edit", edit_service_path(service), class: "btn btn-warning fw-bold" %>
 
-      
-      </div>
+          <%= link_to "Delete", service_path(service), class: "btn btn-danger fw-bold", data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          } %>
+        </div>
+      <% end %>
       <% end %>
     
     

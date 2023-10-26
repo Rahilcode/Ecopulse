@@ -29,6 +29,13 @@
         <%= link_to "Create Service", new_service_path, class: "fs-4 btn button-purple text-light fw-bold mb-4 col-6 p-2" %>
     </div>
 
+    <h1 class="mb-4 fs-2"> Available Services </h1>
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <% @services.each do |service| %>
+            <%= render '/shared/service_post_card', service:service, flag: true %>
+        <% end %>
+    <div>
+
 <% else %>
 
 <h1>Please Sign In</h1>
