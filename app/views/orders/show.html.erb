@@ -1,0 +1,29 @@
+<%= render '/shared/navbar' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col bg-light">
+      <div class="bg-light">
+        <h1 class="text-success">Order Details</h1>
+      </div>
+      <div class="bg-dark">
+        <h3 class="text-light p-2">Name: <%= @order.name.capitalize %></h3>
+      </div>
+      <div class="bg-dark">
+      <h3 class="text-light p-2">Address: <%= @order.address %></h3>
+      </div>
+      <div class="bg-dark">
+      <h3 class="text-light p-2">Phone Number: <%= @order.phone_number %></h3>
+      </div>
+      <div class="bg-dark">
+      <h3 class="text-light p-2">Date: <%= @order.date %></h3>
+      </div>
+      <div class="bg-dark">
+      <h3 class="text-light p-2">Time Slot: <%= @order.time_slot %></h3>
+      </div>
+    </div>
+    <div class="col">
+      <%= image_tag "https://img.freepik.com/free-vector/confirmed-concept-illustration_114360-545.jpg?size=626&ext=jpg&ga=GA1.1.1602978350.1697464774&semt=ais" %>
+    </div>
+  </div>
+</div>

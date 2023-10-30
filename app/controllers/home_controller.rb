@@ -15,4 +15,8 @@ class HomeController < ApplicationController
     @services = @company.services
   end
 
+  def services
+    @services = Service.all
+  end
+
 end

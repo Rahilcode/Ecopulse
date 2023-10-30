@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_one_attached :user_image
   has_many :posts, dependent: :destroy
 
+  has_many :orders, dependent: :destroy
+  has_many :services, through: :orders
+
   validates :name, presence: true
   validates :phone_number, presence: true, numericality: true
   validates :address, presence: true

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :services
+  resources :services do 
+    resources :orders, only: [:new, :create, :show]
+  end
+
   devise_for :companies
   resources :posts
   devise_for :users
@@ -10,5 +13,8 @@ Rails.application.routes.draw do
 
   get '/user/profile', to: 'home#profile'
   get '/company/profile', to: 'home#company_profile'
+  get '/user/services', to: 'home#services'
+
+  
 
 end
