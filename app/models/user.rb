@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :services, through: :orders
 
+  has_many :notifications, as: :recipient, dependent: :destroy
+
   validates :name, presence: true
   validates :phone_number, presence: true, numericality: true
   validates :address, presence: true
