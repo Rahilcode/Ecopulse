@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, except: [:home, :about, :company_profile, :notification]
-  before_action :authenticate_company!, only: [:company_profile]
+  before_action :authenticate_user!, except: [:home, :about, :company_profile, :notification, :posts]
+  before_action :authenticate_company!, only: [:company_profile, :posts]
   def home
   end
 
@@ -19,12 +19,14 @@ class HomeController < ApplicationController
     @services = Service.all
   end
 
+  def posts
+    @posts = Post.where(flag: false);
+  end
+
   def notification
     if user_signed_in?
-      puts "+++++++++++++++++++++++++++++++++++++++++="
       @notifications = current_user.notifications.newest_first
     elsif company_signed_in?
-      puts "cccccccccccccccccccccccccccccccccccccccccccccccccc"
       @notifications = current_company.notifications.newest_first
     end
   end

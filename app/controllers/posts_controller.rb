@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_company!, only: [:show]
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -10,6 +11,14 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    if company_signed_in?
+      if @post.flag == false
+        @post.update(flag: true)
+        @user = User.find(@post.user_id)
+        OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(@user)
+        OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(current_company)
+      end
+    end
   end
 
   # GET /posts/new

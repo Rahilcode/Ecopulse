@@ -1,0 +1,14 @@
+<% if company_signed_in? %>
+<%= render '/shared/company_navbar' %>
+<div class="container">
+
+<h1>Posts</h1>
+
+<div id="posts" class="d-flex justify-content-center align-items-center flex-column">
+  <% @posts.each do |post| %>
+    <%= render '/shared/user_post_card', post:post, flag: false, orderFlag: true %>
+  <% end %>
+</div>
+
+</div>
+<% end %>

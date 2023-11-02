@@ -1,14 +1,16 @@
+<% if user_signed_in? || company_signed_in? %>
+  <% if user_signed_in? %>
+    <%= render '/shared/navbar' %>
+  <% elsif company_signed_in? %>
+    <%= render '/shared/company_navbar' %>
+  <% end %>
 <div class="container my-2">
 <h1>Notifications</h1>
 <% if @notifications.count > 0 %>
   <ul class="list-unstyled">
 
   <% @notifications.read.each do |notification| %>
-    <% instance = notification.to_notification %>
-    <li class="bg-light p-2 pb-1 m-2 border rounded">
-      <span>Sent at: <%= notification&.created_at.to_s %></span>
-      <p><%= instance.message %></p>
-    </li>
+    <%= render '/shared/notification_card', notification:notification %>
   <% end %>
   </ul>
 
@@ -23,6 +25,15 @@
   <% end %>
   </ul>
   </div>
+
+  <% if @notifications.unread.count>0 %>
+    <% @notifications.unread.mark_as_read! %>
+  <% end %>
 <% else %>
   <h2 class="text-center">No Notifications yet<h1>
+<% end %>
+<% else %>
+<div>
+<h1>Please Login</h1>
+</div>
 <% end %>

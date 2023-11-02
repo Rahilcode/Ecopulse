@@ -1,0 +1,5 @@
+<% instance = notification.to_notification %>
+    <li class="bg-light p-2 pb-1 m-2 border rounded">
+      <span>Sent at: <%= notification&.created_at.strftime('%A, %B %e, %Y %l:%M %p %Z').to_s %></span>
+      <p><%= instance.message %></p>
+</li>
