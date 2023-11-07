@@ -25,9 +25,9 @@ class HomeController < ApplicationController
 
   def notification
     if user_signed_in?
-      @notifications = current_user.notifications.newest_first
+      @notifications = current_user.notifications.order("created_at DESC")
     elsif company_signed_in?
-      @notifications = current_company.notifications.newest_first
+      @notifications = current_company.notifications.order("created_at DESC")
     end
   end
 

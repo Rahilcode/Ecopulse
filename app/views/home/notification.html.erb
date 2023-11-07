@@ -7,23 +7,24 @@
 <div class="container my-2">
 <h1>Notifications</h1>
 <% if @notifications.count > 0 %>
-  <ul class="list-unstyled">
 
-  <% @notifications.read.each do |notification| %>
-    <%= render '/shared/notification_card', notification:notification %>
-  <% end %>
-  </ul>
-
-  <ul class="list-unstyled">
-
+<ul class="list-unstyled">
   <% @notifications.unread.each do |notification| %>
     <% instance = notification.to_notification %>
     <li class="bg-primary text-light fw-bold p-2 pb-1 m-2 border rounded">
-      <span>Sent at: <%= notification&.created_at.to_s %></span>
+      <span>Sent at: <%= notification&.created_at.strftime('%A, %B %e, %Y %l:%M %p %Z').to_s %></span>
       <p><%= instance.message %></p>
     </li>
   <% end %>
+</ul>
+
+  <ul class="list-unstyled">
+    <% @notifications.read.each do |notification| %>
+      <%= render '/shared/notification_card', notification:notification %>
+    <% end %>
   </ul>
+
+  
   </div>
 
   <% if @notifications.unread.count>0 %>

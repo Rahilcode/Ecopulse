@@ -4,7 +4,8 @@
 
 <h1>Posts</h1>
 
-<div id="posts" class="d-flex justify-content-center align-items-center flex-column">
+<div id="posts" data-controller="search" class="d-flex justify-content-center align-items-center flex-column">
+  <%= render '/shared/search_bar' %>
   <% @posts.each do |post| %>
     <%= render '/shared/user_post_card', post:post, flag: false, orderFlag: true %>
   <% end %>

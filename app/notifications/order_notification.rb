@@ -30,17 +30,22 @@ class OrderNotification < Noticed::Base
     else
       @order = params[:message]
       @com = params[:company]
+      @service = params[:service]
       if @record.recipient_type == "User"
         puts "---------------------------------------user"
-        "You have Placed order on #{@order.date} at #{@order.time_slot} to #{@com.company_name}"
+        "You have Placed order on #{@order.date} at #{@order.time_slot} to #{@com.company_name} for the service of #{@service.title}"
       elsif @record.recipient_type == "Company"
         puts "=========================================someone"
-        "You have an order on #{@order.date} at #{@order.time_slot} for #{@order.name}"
+        "You have an order on #{@order.date} at #{@order.time_slot} from #{@order.name} for the service of #{@service.title}"
       end
     end
   end
   #
-  # def url
-  #   post_path(params[:post])
-  # end
+  def url
+    if params[:flag]
+      root_path
+    else
+      service_order_path(params[:service], params[:message])
+    end
+  end
 end

@@ -1,32 +1,30 @@
-<div class="card w-75 mb-3 bg-light"> 
+<div data-search-target="post" class="card w-75 mb-3 bg-light"> 
   <div class="card-body p-1">
   <div class="row">
-    <div class="col col-3 d-flex justify-content-center align-items-center">
+    <div class="col-md col-lg-3 d-flex justify-content-center align-items-center">
     <% if service.service_post_image.attached? %>
       <%= image_tag service.service_post_image, height: 140, width: 180 %>
     <% else %>
       <%= image_tag "eco.avif", height: 140 %>
     <% end %>
     </div>
-    <div class="col">
-        <h2 class="card-title m-0"><%= service.title %> </h2>
+    <div class="col-md">
+        <h2 data-search-target="name" class="card-title m-0"><%= service.title %> </h2>
         <h5 class="card-text text-secondary"><%= service.name %></h5>
-        <div class="d-flex gap-2">
+        <div data-search-target="location" class="d-flex gap-2">
             <h4><span class="badge bg-black"> <%= service.city %></span> </h4>
-            <h4><span class="badge bg-black"> Mumbai</span> </h4>
-            <h4><span class="badge bg-black"> Chennai</span> </h4>
         </div>
         <h4 class="card-text text-secondary">Type: <%= service.material %></h4>
     </div>
   </div>
   <div class="row">
-    <h3 class="card-text col"> Contact No: <%= service.phone_number %>  </h3>
+    <h3 class="card-text col-md"> Contact No: <%= service.phone_number %>  </h3>
       <% if !company_signed_in? %>
         <% if !orderFlag %>
           
         <% else %>
           <div class="col col-2 my-2">
-          <%= link_to "Order", new_service_order_path(service), class: "btn button-green fw-bold ms-4" %>
+            <%= link_to "Order", new_service_order_path(service), class: "btn button-green fw-bold ms-lg-4" %>
           </div>
         <% end %>
       <% else %>

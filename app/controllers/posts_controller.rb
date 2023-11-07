@@ -6,17 +6,20 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @user = User.find(current_user.id)
-    @posts = @user.posts
+    @posts = @user.posts.order("flag")
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     if company_signed_in?
       if @post.flag == false
-        @post.update(flag: true)
-        @user = User.find(@post.user_id)
-        OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(@user)
-        OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(current_company)
+        if @post.update(flag: true)
+          @user = User.find(@post.user_id)
+          OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(@user)
+          OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(current_company)
+        else 
+          redirect_to posts_path
+        end
       end
     end
   end
