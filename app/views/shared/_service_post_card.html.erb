@@ -9,7 +9,10 @@
     <% end %>
     </div>
     <div class="col-md">
+      <div class="d-md-flex justify-content-between">
         <h2 data-search-target="name" class="card-title m-0"><%= service.title %> </h2>
+        <h2 class="card-title m-0"><span class="badge rounded bg-dark price-tag">₹ <%= service.price %> </span></h2>
+      </div>
         <h5 class="card-text text-secondary"><%= service.name %></h5>
         <div data-search-target="location" class="d-flex gap-2">
             <h4><span class="badge bg-black"> <%= service.city %></span> </h4>

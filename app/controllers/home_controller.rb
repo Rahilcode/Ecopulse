@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   end
 
   def posts
-    @posts = Post.where(flag: false);
+    @posts = Post.where('date >= ?', Date.today).where(flag: false)
   end
 
   def notification

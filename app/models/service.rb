@@ -10,4 +10,5 @@ class Service < ApplicationRecord
   validates :city, presence: true
   validates :phone_number, presence: true, numericality: true
   validates :material, presence: true
+  validates :price, presence: true, numericality: true
 end

@@ -6,7 +6,7 @@
 
   <div id="posts" data-controller="search" class="d-flex justify-content-center align-items-center flex-column">
     
-    <%= render '/shared/search_bar' %>
+    <%= render '/shared/search_bar', flag: true %>
 
     <% @posts.each do |post| %>
       <%= render partial: '/shared/user_post_card', locals: {post:post} %>

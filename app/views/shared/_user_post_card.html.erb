@@ -1,7 +1,7 @@
-<% if !post.flag %>
+<% if !post.flag && post.date >= Date.today %>
 <div data-search-target="post"  class="card w-75 mb-3 bg-light"> 
   <div class="card-body p-1">
-  <h4 class="post-contact-detail col-md text-end ms-2 me-2 position-absolute top-0 end-0">Contact No: <%= post.phone_number %></h4>
+  <h4 class="post-contact-detail col-md text-end position-absolute top-0 end-0">Contact No: <%= post.phone_number %></h4>
   <div class="row">
     <div class="col-md col-lg-3 d-flex justify-content-center align-items-center">
       <% if post.user_post_image.attached? %>
@@ -14,7 +14,7 @@
         <h2 data-search-target="name" class="card-title"><%= post.name.capitalize %>  (<span><%= post.material_type.capitalize %></span>)</h2>
         <h6 class="card-text text-secondary">Address: <%= post.address %> </h6>
         <h4><span class="badge bg-black"><%= post.city.capitalize %> </span></h4>
-        <div class="d-flex justify-content-between">
+        <div class="d-lg-flex justify-content-between">
             <h6 class="card-text text-secondary">Type: <%= post.material_type.capitalize %> </h6>
             <h6 class="card-text text-secondary">Date: <%= post.date %> </h6>
             <h6 class="card-text text-secondary">Time Available: <%= post.time_slot %> </h6>
@@ -43,9 +43,9 @@
   </div>
 </div>
 <% else %>
-<div data-search-target="post" class="card w-75 mb-3 bg-secondary"> 
+<div data-search-target="post" class="expired-card card w-75 mb-3"> 
   <div class="card-body p-1">
-  <h4 class="post-contact-detail ms-2 me-2 text-end m-0 position-absolute top-0 end-0">Contact No: <%= post.phone_number %></h4>
+  <h4 class="post-contact-detail text-end m-0 position-absolute top-0 end-0">Contact No: <%= post.phone_number %></h4>
   <div class="row">
     <div class="col-md col-lg-3 d-flex justify-content-center align-items-center">
       <% if post.user_post_image.attached? %>
@@ -58,7 +58,7 @@
         <h2 data-search-target="name" class="card-title"><%= post.name.capitalize %>  (<%= post.material_type.capitalize %>)</h2>
         <h6 class="card-text">Address: <%= post.address %> </h6>
         <h4><span class="badge bg-black"><%= post.city.capitalize %></span></h4>
-        <div class="d-flex justify-content-between">
+        <div class="d-lg-flex justify-content-between">
             <h6 class="card-text">Type: <%= post.material_type.capitalize %> </h6>
             <h6 class="card-text">Date: <%= post.date %> </h6>
             <h6 class="card-text">Time Available: <%= post.time_slot %> </h6>
@@ -67,8 +67,12 @@
   </div>
   <div class="row">
     <p class="card-text col=md"> Description: <%= post.description.size==0 ? "NA" : post.description %>  </p>
-    <div class="col-md col-2 my-2">
-    <h3><span class="badge bg-warning">Expired</span></h3>
+    <div class="col-md col-2">
+    <% if post.flag %>
+      <h3><span class="badge bg-success text-white">Completed</span></h3>
+    <% else %>
+      <h3><span class="badge bg-warning text-white">Expired</span></h3>
+    <% end %>
     </div>
   </div>
   </div>

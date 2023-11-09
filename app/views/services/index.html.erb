@@ -4,10 +4,10 @@
 <h1>Services</h1>
 
 <div id="services" data-controller="search"  class="d-flex justify-content-center align-items-center flex-column">
-<div class="d-flex justify-content-center col-lg-8 mb-3">
-    <%= render '/shared/search_bar' %>
-    <%= render '/shared/select_box' %>
-</div>
+  <div class="d-flex justify-content-center col-lg-8 mb-3">
+      <%= render '/shared/search_bar', flag: false %>
+      <%= render '/shared/select_box' %>
+  </div>
   <% @services.each do |service| %>
     <%= render '/shared/service_post_card', service:service, flag: false %>
   <% end %>

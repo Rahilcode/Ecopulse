@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container login-body">
 <% if user_signed_in? %>
     <h1>Please visit the below link to Log In</h1>
     <%= link_to "Login", user_session_path, class: "btn btn-dark" %>
   <% else %>
   <div class="row heading">
-    <div class="col">
+    <div class="col image-container">
       <%= image_tag "Pulse.png" %>
     </div>
 
-    <div class="col">
+    <div class="col login-container">
       <h2 class="fw-bold mb-4">Company Login</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

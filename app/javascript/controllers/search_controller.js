@@ -4,23 +4,45 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["name", "post", "location"];
   static value = { posts: Array };
+
   connect() {
     console.log("Working", this.element);
     this.postsValue = this.postTargets;
   }
 
-  filter(event) {
-    let value = event.target.value.trim();
+  filterPosts(event) {
+    let value = event.target.value.toLowerCase().trim();
     // console.log(this.postTargets);
     this.postsValue.forEach((element, index) => {
-      value = value.toLowerCase();
       let name = this.nameTargets[index].innerText.toLowerCase();
+
       if (name.includes(value)) {
         element.classList.remove("d-none");
       } else {
         element.classList.add("d-none");
       }
-      console.log(this.nameTargets[index].innerText);
+    });
+  }
+
+  filter(event) {
+    let value = event.target.value.toLowerCase().trim();
+    // console.log(this.postTargets);
+    this.postsValue.forEach((element, index) => {
+      let name = this.nameTargets[index].innerText.toLowerCase();
+      let searchVal = this.postsValue[index].innerText
+        .split("\n")[0]
+        .toLowerCase()
+        .trim();
+
+      if (searchVal.includes(value)) {
+        console.log("remove");
+        element.classList.remove("d-none");
+      } else {
+        console.log("add");
+        element.classList.add("d-none");
+      }
+      console.log(searchVal + value + element);
+      console.log(this.postsValue, searchVal);
     });
   }
 
@@ -33,16 +55,17 @@ export default class extends Controller {
     this.postTargets.forEach((element, index) => {
       let cities = this.locationTargets[index].children;
 
-      let flag = false;
+      // let flag = false;
 
       let city = cities[0].innerText.toLowerCase().trim();
       console.log(city);
       if (city == val) {
         console.log(city, val);
         console.log("true");
-        flag = true;
+        element.classList.remove("d-none");
+        tempArray.push(element);
       } else {
-        flag = false;
+        element.classList.add("d-none");
         console.log("false");
       }
 
@@ -61,12 +84,12 @@ export default class extends Controller {
       //   }
       // }
 
-      if (flag) {
-        element.classList.remove("d-none");
-        tempArray.push(element);
-      } else {
-        element.classList.add("d-none");
-      }
+      // if (flag) {
+      //   element.classList.remove("d-none");
+      //   tempArray.push(element);
+      // } else {
+      //   element.classList.add("d-none");
+      // }
 
       console.log(cities);
     });
@@ -77,6 +100,7 @@ export default class extends Controller {
         ele.classList.remove("d-none");
       });
     } else {
+      console.log(tempArray);
       this.postsValue = tempArray;
     }
   }
