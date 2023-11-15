@@ -1,0 +1,80 @@
+<% render '/shared/navbar' %>
+
+<div class="container payment-details">
+    <h1 class="text-success">Payment Details</h1>
+    <div class="row my-5">
+        <div class="col payment-methods">
+            <h2>Payment Methods</h2>
+            <div class="radio-buttons">
+
+                <div class="form-check">
+                    <input data-action="change->order#handleradio" class="form-check-input" type="radio" name="payment" id="flexRadioDefault1" value="cash" checked>
+                    <label class="form-check-label" for="payment">
+                        Cash
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input data-action="change->order#handleradio" class="form-check-input" type="radio" name="payment" id="flexRadioDefault2" value="card">
+                    <label class="form-check-label" for="someone">
+                        Card
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input data-action="change->order#handleradio" class="form-check-input" type="radio" name="payment" id="flexRadioDefault2" value="upi">
+                    <label class="form-check-label" for="someone">
+                        UPI
+                    </label>
+                </div>
+                
+                <div  class="form-check">
+                    <% radio_button_tag'payment_method', "Cash", true, class:"form-check-input" %>
+                    <% label_tag "Cash" %>
+                </div>  
+                <div class="form-check">
+                    <% radio_button_tag 'payment_method', "Card", false, disabled: true, class:"form-check-input" %>
+                    <% label_tag "Card" %>
+                </div>
+            </div>
+
+            <div data-action="click->order#handlecancel" class="btn btn-dark fw-bold">Cancel</div>
+           
+        </div>
+
+        <div class="col">
+            <div class="bg-dark text-white p-2">
+                <h3>Price is ₹ <%= @service.price %></h3>
+            </div>
+            <div>
+                <div data-order-target="cardform" class="my-2 card-method d-none">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="first-name" placeholder="First Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="card-number" placeholder="Card Number">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="date" placeholder="MM/YY">
+                    </div>
+                </div>
+                <div data-order-target="upiform" class="my-2 upi-method d-none">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="upi-id" placeholder="Enter UPI ID">
+                    </div>
+                </div>
+                
+                <div class="actions my-2">
+                    <%= form.submit "Create Order", class: "btn button-green fw-bold" %>
+                </div>
+            <div>
+            <div class="w-50 h-25">
+                <%= image_tag "https://img.freepik.com/free-vector/payment-information-concept-illustration_114360-2886.jpg?size=626&ext=jpg&ga=GA1.1.599098643.1699595857&semt=sph" %>
+            </div>
+        </div>
+    </div>
+</div>

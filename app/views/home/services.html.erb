@@ -8,11 +8,14 @@
 
 <div class="d-flex justify-content-center col-lg-8 mb-3">
     <%= render '/shared/search_bar', flag: false %>
-    <%= render '/shared/select_box' %>
+    <%= render '/shared/select_box', name: "Location", val: {bangalore: "Bangalore", chennai: "Chennai", mumbai: "Mumbai"}, action: "change->search#selectFilter" %>
+    <%= render '/shared/select_box', name: "Price", val: {"1": "0 - 99", "2": "100 - 299", "3": "300 - 599", "4": "600 +"}, action: "change->search#priceFilter" %>
+    <% render '/shared/price_select_box' %>
+    <% render '/shared/rating_select_box' %>
 </div>
 
   <% @services.each do |service| %>
-    <%= render '/shared/service_post_card', service:service, flag: false, orderFlag: true %>
+    <%= render '/shared/service_post_card', service:service, flag: false, orderFlag: true, ratingflag:true %>
   <% end %>
 </div>
 

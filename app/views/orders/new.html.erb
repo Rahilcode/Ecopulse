@@ -1,24 +1,26 @@
 <%= render '/shared/navbar' %>
-<div class="container my-2">
 
-  <h1>Place Order</h2>
-  <%= render '/shared/service_post_card', service:@service, flag: false, orderFlag: false %>
+<div data-controller="order" class="container my-2">
 
 
 
   <%= form_with(model: @order, url: service_orders_path) do |form| %>
-    <% if @order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+  <div data-order-target="orderform" class="order-page">
+    <h1>Place Order</h2>
+    <%= render '/shared/service_post_card', service:@service, flag: false, orderFlag: false, ratingflag: false %>
 
-      <ul>
-        <% @order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <div>
+    <% if @order.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+          <% @order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="order-form">
       <div class="mb-3 field col-lg-6">
         <% form.label :name %>
         <%= form.text_field :name, placeholder: "Name", class: "form-control bg-light border fw-bold" %>
@@ -44,12 +46,21 @@
         <% form.label :message %>
         <%= form.text_area :message, placeholder: "Message If Any", class: "form-control bg-light border fw-bold" %>
       </div>
-    
-      <div class="actions">
-        <%= form.submit "Create Order", class: "btn button-green fw-bold" %>
+
+      <div class="my-4">
+        <div data-action="click->order#handlechange", class="btn button-green fw-bold">Proceed Order</div>
       </div>
-    
+
     </div>
-    <% end %>
+      
+  </div>
+    
+    <div data-order-target="payment" class="d-none">
+        <%= render 'payment', form: form %>
+    </div>
+    
+      
+    
+  <% end %>
   
 </div>

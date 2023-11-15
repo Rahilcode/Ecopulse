@@ -105,6 +105,11 @@
   color: #16b403 !important;
 }
 
+.rate-btn {
+  font-size: 10px;
+  border: none;
+}
+
 @media only screen and (max-width: 995px) {
   .home-img-container {
     width: 300px;

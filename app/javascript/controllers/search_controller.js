@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="search"
 export default class extends Controller {
-  static targets = ["name", "post", "location"];
+  static targets = ["name", "post", "location", "price", "rating"];
   static value = { posts: Array };
 
   connect() {
@@ -92,6 +92,130 @@ export default class extends Controller {
       // }
 
       console.log(cities);
+    });
+
+    if (c == 0 && val == "all") {
+      this.postsValue = this.postTargets;
+      this.postTargets.forEach((ele) => {
+        ele.classList.remove("d-none");
+      });
+    } else {
+      console.log(tempArray);
+      this.postsValue = tempArray;
+    }
+  }
+
+  priceFilter(event) {
+    console.log(event.target.value);
+    let val = event.target.value.toLowerCase().trim();
+
+    let c = 0;
+    let tempArray = [];
+    this.postTargets.forEach((element, index) => {
+      let price = this.priceTargets[index].children[0].innerText
+        .split(" ")[1]
+        .toLowerCase()
+        .trim();
+
+      if (val == "1") {
+        if (price >= 0 && price <= 99) {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else if (val == "2") {
+        if (price >= 100 && price <= 299) {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else if (val == "3") {
+        if (price >= 300 && price <= 599) {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else if (val == "4") {
+        if (price >= 600) {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else {
+        element.classList.remove("d-none");
+      }
+
+      if (c == 0 && val == "all") {
+        this.postsValue = this.postTargets;
+        this.postTargets.forEach((ele) => {
+          ele.classList.remove("d-none");
+        });
+      } else {
+        this.postsValue = tempArray;
+      }
+
+      console.log(price);
+    });
+
+    if (c == 0 && val == "all") {
+      this.postsValue = this.postTargets;
+      this.postTargets.forEach((ele) => {
+        ele.classList.remove("d-none");
+      });
+    } else {
+      console.log(tempArray);
+      this.postsValue = tempArray;
+    }
+  }
+
+  ratingFilter(event) {
+    console.log(event.target.value);
+    let val = event.target.value.toLowerCase().trim();
+
+    let c = 0;
+    let tempArray = [];
+    this.postTargets.forEach((element, index) => {
+      let rating = this.ratingTargets[index].innerText.toLowerCase().trim();
+
+      if (val == "3") {
+        if (rating == "3") {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else if (val == "4") {
+        if (rating == 4) {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else if (val == "5") {
+        if (rating == 5) {
+          element.classList.remove("d-none");
+          tempArray.push(element);
+        } else {
+          element.classList.add("d-none");
+        }
+      } else {
+        element.classList.remove("d-none");
+      }
+
+      if (c == 0 && val == "all") {
+        this.postsValue = this.postTargets;
+        this.postTargets.forEach((ele) => {
+          ele.classList.remove("d-none");
+        });
+      } else {
+        this.postsValue = tempArray;
+      }
+
+      console.log(rating);
     });
 
     if (c == 0 && val == "all") {

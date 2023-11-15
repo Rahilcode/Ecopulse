@@ -5,6 +5,8 @@ class Service < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :users, through: :orders
 
+  has_many :ratings, dependent: :destroy
+
   validates :name, presence: true
   validates :title, presence: true
   validates :city, presence: true

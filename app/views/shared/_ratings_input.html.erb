@@ -1,0 +1,21 @@
+<% if @service.orders.where("user_id=?", current_user.id).exists? && !@service.ratings.where("user_id=?", current_user.id).exists?  %>
+<h2>Add Ratings</h2>
+<%= form_with model: [ @service, @service.ratings.build ] do |form| %>
+<div>
+<% (1..5).each do |r| %>
+    <% radio_button_tag :ratings, r, false, class: "radio-button" %>
+    <i data-action="click->rating#handlechange" data-rating-target="radio" class="fa-solid fa-star fa-beat">
+        <%= form.radio_button :ratings, r, checked: false, class:"visually-hidden" %>
+      
+        <%= form.label r, class:"visually-hidden" %>
+    </i>
+  <% end %>
+
+</div>
+
+<div data-rating-target="submitbtn" class="my-2">
+  <%= form.submit "submit", class: "btn button-purple rounded text-white visually-hidden" %>
+</div>
+    <% end %>
+
+<% end %>

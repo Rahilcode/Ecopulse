@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :services do 
+    resources :ratings, only: [:new, :create]
     resources :orders, only: [:new, :create, :show]
   end
 
@@ -18,6 +19,9 @@ Rails.application.routes.draw do
   get '/company/posts', to: 'home#posts'
 
   get '/notification', to: 'home#notification'
+
+  # get '/services/:service_id/payment', to: 'orders#payment', as: :payment
+  # get '/pay', to: 'orders#pay'
 
   
 

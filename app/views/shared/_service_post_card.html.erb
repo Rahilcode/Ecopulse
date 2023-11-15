@@ -11,17 +11,68 @@
     <div class="col-md">
       <div class="d-md-flex justify-content-between">
         <h2 data-search-target="name" class="card-title m-0"><%= service.title %> </h2>
-        <h2 class="card-title m-0"><span class="badge rounded bg-dark price-tag">₹ <%= service.price %> </span></h2>
+        <h2 data-search-target="price" class="card-title m-0"><span class="badge rounded bg-dark price-tag">₹ <%= service.price %> </span></h2>
       </div>
         <h5 class="card-text text-secondary"><%= service.name %></h5>
         <div data-search-target="location" class="d-flex gap-2">
             <h4><span class="badge bg-black"> <%= service.city %></span> </h4>
         </div>
-        <h4 class="card-text text-secondary">Type: <%= service.material %></h4>
+        <div class="d-flex justify-content-between">
+          <h4 class="card-text text-secondary">Type: <%= service.material %></h4>
+          <% if service.avg_rating==0 %>
+            <h5 class="card-text col-md"> Ratings: <%= service.avg_rating %>  </h5>
+          <% else %>
+            <div>
+              <span class="card-text col-md"> Ratings: </span>
+              <% (1..service.avg_rating).each do |r| %>
+                <i class="fa-solid fa-star fa-lg my-1" style="color: #ffc800;"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
     </div>
   </div>
   <div class="row">
-    <h3 class="card-text col-md"> Contact No: <%= service.phone_number %>  </h3>
+  <span data-search-target="rating" class="visually-hidden"><%= service.avg_rating %></span>
+  <% if !company_signed_in? %>
+  <div data-controller="rating" class="col-md my-2 d-flex">
+    <% if ratingflag && service.orders.where("user_id=?", current_user.id).exists? && !service.ratings.where("user_id=?", current_user.id).exists?  %>
+      <h6 class="me-2 my-1">Rate: </h6>
+      <%= form_with model: [ service, service.ratings.build ] do |form| %>
+      <div class="d-flex">
+      <div>
+      <% (1..5).each do |r| %>
+          <% radio_button_tag :ratings, r, false, class: "radio-button" %>
+          <i data-action="click->rating#handlechange" data-rating-target="radio" class="fa-solid fa-star fa-beat">
+              <%= form.radio_button :ratings, r, checked: false, class:"visually-hidden" %>
+            
+              <%= form.label r, class:"visually-hidden" %>
+          </i>
+        <% end %>
+      </div>
+      
+      <div data-rating-target="submitbtn" class="ms-1 m-0">
+              <%= form.submit "Submit", class: "rate-btn tn button-purple rounded text-white p-1 visually-hidden" %>
+        </div>
+      </div>
+          <% end %>
+      <% end %>
+  </div>
+  <% end %>
+
+  <div class="col-md my-2">
+    <!-- <% if service.avg_rating==0 %>
+      <h5 class="card-text col-md"> Ratings: <%= service.avg_rating %>  </h5>
+    <% else %>
+      <div>
+        <span class="card-text col-md"> Ratings: </span>
+        <% (1..service.avg_rating).each do |r| %>
+          <i class="fa-solid fa-star fa-lg my-1" style="color: #ffc800;"></i>
+        <% end %>
+      </div>
+    <% end %>
+    -->
+    </div>
       <% if !company_signed_in? %>
         <% if !orderFlag %>
           
@@ -31,16 +82,16 @@
           </div>
         <% end %>
       <% else %>
-      <% if flag %>
-        <div class="col text-end me-1">
-          <%= link_to "Edit", edit_service_path(service), class: "btn btn-warning fw-bold" %>
+        <% if flag %>
+          <div class="col text-end me-1">
+            <%= link_to "Edit", edit_service_path(service), class: "btn btn-warning fw-bold" %>
 
-          <%= link_to "Delete", service_path(service), class: "btn btn-danger fw-bold", data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"
-          } %>
-        </div>
-      <% end %>
+            <%= link_to "Delete", service_path(service), class: "btn btn-danger fw-bold", data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %>
+          </div>
+        <% end %>
       <% end %>
     
     

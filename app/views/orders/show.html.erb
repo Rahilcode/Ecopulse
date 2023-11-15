@@ -26,5 +26,10 @@
       <%= image_tag "https://img.freepik.com/free-vector/confirmed-concept-illustration_114360-545.jpg?size=626&ext=jpg&ga=GA1.1.1602978350.1697464774&semt=ais" %>
     </div>
   </div>
-  <%= link_to "About", root_path, class: "btn btn-dark" %>
+
+  <div data-controller="rating">
+        <%= render '/shared/ratings_input' %>
+  </div>
+
+  <%= link_to "About", root_path, class: "btn btn-dark my-3" %>
 </div>
