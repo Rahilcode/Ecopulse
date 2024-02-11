@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    
+    <h1>Order Notification for, <%= @flag ? @user.name : @company.company_name  %> </h1>
+    <% if @flag %>
+        <p>
+            You have Placed order on <%= @order.date %> at <%= @order.time_slot %> to <%= @company.company_name %> for the service of <%= @service.name %>
+        </p>
+    <% else %>
+        <p>
+            You have received an order on <%= @order.date %> at <%= @order.time_slot %> from <%= @user.name %> for the service of <%= @service.name %>
+        </p>
+    <% end %>
+    <p>
+      To login to the site, just follow this link: <%= @url %>, <%= link_to "Visit", root_url("http://localhost:3000") %>.
+    </p>
+    <p>Thanks You and have a great day!</p>
+  </body>
+</html>

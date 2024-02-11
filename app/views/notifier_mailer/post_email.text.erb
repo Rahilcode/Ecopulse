@@ -1,0 +1,14 @@
+Order Notification for, <%= @flag ? @user.name : @company.company_name  %> 
+===============================================
+
+<% if @flag %>
+
+You have request for <%= @post.title %> on <%= @post.date %> at <%= @post.time_slot %> from <%= @company.company_name %>
+
+<% else %>
+You have requested an order to <%= @user.name %> on <%= @post.date %> at <%= @post.time_slot %> for <%= @post.title %>
+<% end %>
+
+To login to the site, just follow this link: <%= @url %>, <%= link_to "Visit", root_url("http://localhost:3000") %>.
+
+Thanks You and have a great day!

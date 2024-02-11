@@ -16,7 +16,57 @@ class HomeController < ApplicationController
   end
 
   def services
+    
     @services = Service.all
+
+    puts '-----------================---------------'
+    puts params
+    @search = params[:search]
+    if @search && @search != ""
+      @services = @services.where("lower(title) LIKE ?", "%#{@search}%")
+    end
+
+    @location = params[:location]
+    if @location && @location != "" 
+      @services = @services.where("lower(city) LIKE ?", @location)
+    end
+
+    @price = params[:price]
+    puts @price
+    p1 = 0;
+    p2 = 0;
+    if(@price == "1") 
+      p1 = 0
+      p2 = 99
+    elsif(@price == "2") 
+      p1 = 100
+      p2 = 299
+     elsif(@price == "3") 
+      p1 = 300
+      p2 = 599
+     else 
+      p1 = 600
+      p2 = 100000
+    
+  end
+    if @price && @price != "" 
+      puts p1
+      puts p2
+      @services = @services.where("CAST(price AS INT) BETWEEN ? AND ?", p1, p2)
+    end
+
+    @rating = params[:rating]
+    if @rating && @rating != "" 
+      @services = @services.where("avg_rating LIKE ?", @rating)
+    end
+    
+  end
+
+  def filter 
+    puts "filterfilterfilterfilter"
+    puts params
+    redirect_to :controller => 'home', :action => 'services',:search => params[:search], :location => params[:location],
+      :price => params[:price], :rating => params[:rating]
   end
 
   def posts

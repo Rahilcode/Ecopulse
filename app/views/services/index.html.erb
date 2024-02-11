@@ -4,14 +4,46 @@
 <h1>Services</h1>
 
 <div id="services" data-controller="search"  class="d-flex justify-content-center align-items-center flex-column">
-  <div class="d-flex justify-content-center col-lg-8 mb-3">
-      <%= render '/shared/search_bar', flag: false %>
-      <%= render '/shared/select_box', name: "Location", val: {bangalore: "Bangalore", chennai: "Chennai", mumbai: "Mumbai"}, action: "change->search#selectFilter" %>
-      <%= render '/shared/select_box', name: "Price", val: {"1": "0 - 99", "2": "100 - 299", "3": "300 - 599", "4": "600 +"}, action: "change->search#priceFilter" %>
+<%= form_with url: "/company/services/search", method: :get do |form| %>
+  <div class="d-flex justify-content-center col-lg-12 mb-1">
+  <div class="field col-lg-7">
+    <%= form.text_field :search, placeholder: "Search", class: "form-control bg-light border rounded fw-bold mb-4" %>
   </div>
-  <% @services.each do |service| %>
-    <%= render '/shared/service_post_card', service:service, flag: false, ratingflag: true %>
+  <div class="field col-lg-3 ms-2">
+    <%= form.select :location, [["Bangalore", "bangalore"], ["Chennai", "chennai"], ["Mumbai", "Mumbai"]], { include_blank: "Location" }, class: "form-select bg-light fw-bold" %>
+  </div>
+
+  <div class="field col-lg-3 ms-2">
+    <%= form.select :price, [["0 - 99", "1"], ["100 - 299", "2"], ["300 - 599", "3"], ["600 +", "4"]], { include_blank: "Price" }, class: "form-select bg-light fw-bold" %>
+  </div>
+  <div class="field col-lg-3 ms-2">
+    <%= form.select :rating, [["3", "3"], ["4", "4"], ["5", "5"]], { include_blank: "Rating" }, class: "form-select bg-light fw-bold" %>
+  </div>
+
+  <div class="field">
+    <%= form.submit "Search", class: "ms-1 btn button-green fw-bold" %>
+  </div>
+
+  
+  
+  <!-- <%= render '/shared/search_bar', flag: false %>
+  <%= render '/shared/select_box', name: "Location", val: {bangalore: "Bangalore", chennai: "Chennai", mumbai: "Mumbai"}, action: "change->search#selectFilter" %>
+  <%= render '/shared/select_box', name: "Price", val: {"1": "0 - 99", "2": "100 - 299", "3": "300 - 599", "4": "600 +"}, action: "change->search#priceFilter" %>
+  <%= render '/shared/rating_select_box', name: "Ratings", val: {"3": "3", "4": "4", "5": "5"}, action: "change->search#ratingFilter" %>
+  -->
+
+  
+  
+  </div>
   <% end %>
+  <% if @services.count > 0 %>
+  <% @services.each do |service| %>
+    <%= render '/shared/service_post_card', service:service, flag: false, orderFlag: true, ratingflag:true %>
+  <% end %>
+<% else %>
+    <h2>No Results</h2>
+    <%= link_to "Show All", services_path, class: "btn btn-dark" %>
+<% end %>
 </div>
 
 </div>

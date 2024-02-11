@@ -3,11 +3,14 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="search"
 export default class extends Controller {
   static targets = ["name", "post", "location", "price", "rating"];
-  static value = { posts: Array };
+  static value = { posts: Array, loc: String, price: String, rating: String };
 
   connect() {
     console.log("Working", this.element);
     this.postsValue = this.postTargets;
+    this.locValue = "none";
+    this.priceValue = "none";
+    this.ratingValue = "none";
   }
 
   filterPosts(event) {
@@ -49,6 +52,17 @@ export default class extends Controller {
   selectFilter(event) {
     console.log(event.target.value);
     let val = event.target.value.toLowerCase().trim();
+    this.locValue = val;
+
+    window.location.replace(
+      "http://localhost:3000/search/services/" +
+        this.locValue +
+        "/" +
+        this.priceValue +
+        "/" +
+        this.ratingValue
+    );
+    return;
 
     let c = 0;
     let tempArray = [];
@@ -109,6 +123,17 @@ export default class extends Controller {
     console.log(event.target.value);
     let val = event.target.value.toLowerCase().trim();
 
+    this.priceValue = val;
+    window.location.replace(
+      "http://localhost:3000/search/services/" +
+        this.locValue +
+        "/" +
+        this.priceValue +
+        "/" +
+        this.ratingValue
+    );
+    return;
+
     let c = 0;
     let tempArray = [];
     this.postTargets.forEach((element, index) => {
@@ -149,14 +174,14 @@ export default class extends Controller {
         element.classList.remove("d-none");
       }
 
-      if (c == 0 && val == "all") {
-        this.postsValue = this.postTargets;
-        this.postTargets.forEach((ele) => {
-          ele.classList.remove("d-none");
-        });
-      } else {
-        this.postsValue = tempArray;
-      }
+      // if (c == 0 && val == "all") {
+      //   this.postsValue = this.postTargets;
+      //   this.postTargets.forEach((ele) => {
+      //     ele.classList.remove("d-none");
+      //   });
+      // } else {
+      //   this.postsValue = tempArray;
+      // }
 
       console.log(price);
     });
@@ -206,14 +231,14 @@ export default class extends Controller {
         element.classList.remove("d-none");
       }
 
-      if (c == 0 && val == "all") {
-        this.postsValue = this.postTargets;
-        this.postTargets.forEach((ele) => {
-          ele.classList.remove("d-none");
-        });
-      } else {
-        this.postsValue = tempArray;
-      }
+      // if (c == 0 && val == "all") {
+      //   this.postsValue = this.postTargets;
+      //   this.postTargets.forEach((ele) => {
+      //     ele.classList.remove("d-none");
+      //   });
+      // } else {
+      //   this.postsValue = tempArray;
+      // }
 
       console.log(rating);
     });

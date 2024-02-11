@@ -17,6 +17,10 @@ class PostsController < ApplicationController
           @user = User.find(@post.user_id)
           OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(@user)
           OrderNotification.with(company: current_company, post: @post, user: @user, flag: true).deliver_later(current_company)
+
+
+          NotifierMailer.with(company: current_company, post: @post, user: @user, flag: false).post_email.deliver_later
+          NotifierMailer.with(company: current_company, post: @post, user: @user, flag: true).post_email.deliver_later
         else 
           redirect_to posts_path
         end

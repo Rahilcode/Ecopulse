@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get '/company/profile', to: 'home#company_profile'
   get '/user/services', to: 'home#services'
 
+  get '/services/search', to: 'home#search'
+
+  get '/user/services/search', to: 'home#filter'
+  get '/company/services/search', to: 'services#filter'
+
   get '/company/posts', to: 'home#posts'
 
   get '/notification', to: 'home#notification'
